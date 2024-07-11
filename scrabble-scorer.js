@@ -64,21 +64,21 @@ let vowelBonusScorer = function (vowels) {
     arrayVowels = vowels.split("")
     console.log(arrayVowels)
 
-   let knownVowels = ["A", "E", "I", "O", "U"];
+   //let knownVowels = ["A", "E", "I", "O", "U"];
    let bonusScore = 0;
+   //let numOfVowels = []
+   //console.log(numOfVowels)
 
   for (let i = 0; i < arrayVowels.length; i++) {
-    if (arrayVowels[i] === knownVowels[i]){
-       bonusScore += 3
-    } else {
+    if (arrayVowels[i] === "A" || arrayVowels[i] === "E" || arrayVowels[i] === "I" || arrayVowels[i] ==="O" ||arrayVowels [i] === "U") {
+      bonusScore += 3
+    }
+    else if (arrayVowels[i] !== "A" || arrayVowels[i] !== "E" || arrayVowels[i] !== "I" || arrayVowels[i] !=="O" ||arrayVowels [i] !=="U"){
       bonusScore += 1
     }
-    
-    
-  }
-
-  return bonusScore
    }
+    return bonusScore
+}
    
 
 

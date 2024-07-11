@@ -33,27 +33,104 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   console.log("Let's play some scrabble!\n");
+   //let initialAnswer = input.question("Enter a word: ");
+     //return initialAnswer;
+ //  console.log(oldScrabbleScorer (initialAnswer));
 };
 
-let newPointStructure;
+//let initialAnswer = initialPrompt;
+//console.log(initialPrompt())
+//let firstAnswer = initialPrompt();
+//console.log(firstAnswer)
 
-let simpleScorer;
+let newPointStructure
 
-let vowelBonusScorer;
+let simpleScorer = function (word) {
+   let wordScore = 0;
+      for (let i = 0; i < word.length; i++){
+         wordScore += 1;
+     //return wordScore;
+   }
+   return wordScore;
+   
+};
+
+
+
+let vowelBonusScorer = function (vowels) {
+   vowels = vowels.toUpperCase();
+   let arrayVowels = [];
+    arrayVowels = vowels.split("")
+    console.log(arrayVowels)
+
+   let knownVowels = ["A", "E", "I", "O", "U"];
+   let bonusScore = 0;
+
+  for (let i = 0; i < arrayVowels.length; i++) {
+    if (arrayVowels[i] === knownVowels[i]){
+       bonusScore += 3
+    } else {
+      bonusScore += 1
+    }
+    
+    
+  }
+
+  return bonusScore
+   }
+   
+
+
 
 let scrabbleScorer;
 
-const scoringAlgorithms = [];
+const scoringAlgorithms = [
 
-function scorerPrompt() {}
+{name: "Simple Score",
+ description : "Each letter is worth 1 point",
+ scorerFunction: simpleScorer,
+ },
+
+ {name: "Bonus Vowels",
+ description : "Vowels are 3 points, consonants are 1 point",
+ scorerFunction: vowelBonusScorer,
+ },
+
+ {name: "Scrabble",
+ description : "Traditional scoring algorithm",
+ scorerFunction : oldScrabbleScorer,
+ }
+
+
+];
+
+function scorerPrompt() {
+    let initialAnswer = input.question("Enter a word: ");
+    console.log(`Which scoring algorithm would you like to use?\n\n`);
+
+     for (let i = 0; i < scoringAlgorithms.length; i++) {
+      console.log(i + "- " + scoringAlgorithms[i].name + ": " + scoringAlgorithms[i].description);
+     }
+
+      let scorerInput = input.question(`Please select 0, 1, or 2: `)
+      if (scorerInput === "0") {
+         console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[0].scorerFunction(initialAnswer)}`)
+
+      } else if (scorerInput === "1"){
+        console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[1].scorerFunction(initialAnswer)}`)
+      }
+      }
+      
+   
+
 
 function transform() {};
 
 function runProgram() {
-   initialPrompt();
+   initialPrompt(), scorerPrompt();
    
-}
+};
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //

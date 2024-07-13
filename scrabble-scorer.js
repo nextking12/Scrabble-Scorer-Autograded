@@ -76,8 +76,9 @@ let vowelBonusScorer = function (vowels) {
     else if (arrayVowels[i] !== "A" || arrayVowels[i] !== "E" || arrayVowels[i] !== "I" || arrayVowels[i] !=="O" ||arrayVowels [i] !=="U"){
       bonusScore += 1
     }
-   }
-    return bonusScore
+    
+  }
+   return bonusScore
 }
    
 
@@ -125,10 +126,27 @@ function scorerPrompt() {
    
 
 
-function transform() {};
+function transform(oldPointStructure) {
+   let newObj = {}
+
+
+   for (item in oldPointStructure) {
+      let keyValue = oldPointStructure[item]
+      //console.log(keyValue)
+
+     for (let i = 0; i < keyValue.length; i++) {
+      newObj[keyValue[i].toLowerCase()] = Number(item)
+     // console.log(newObj)
+     }
+
+   
+      }
+      return newObj;
+   }
+//}
 
 function runProgram() {
-   initialPrompt(), scorerPrompt();
+   initialPrompt(), scorerPrompt(), transform(oldPointStructure);
    
 };
 

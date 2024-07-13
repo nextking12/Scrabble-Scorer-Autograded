@@ -44,7 +44,7 @@ function initialPrompt() {
 //let firstAnswer = initialPrompt();
 //console.log(firstAnswer)
 
-let newPointStructure
+let newPointStructure = transform(oldPointStructure);
 
 let simpleScorer = function (word) {
    let wordScore = 0;
@@ -84,7 +84,23 @@ let vowelBonusScorer = function (vowels) {
 
 
 
-let scrabbleScorer;
+let scrabbleScorer = function (word) {
+   word = word.toLowerCase();
+   let newScore = 0;
+
+   for (let i = 0; i < word.length; i++) {
+      for (item in newPointStructure){
+         if (word[i] === item)
+         newScore += newPointStructure[item]
+
+      
+      }
+      
+   }
+
+return newScore;
+
+};
 
 const scoringAlgorithms = [
 
@@ -100,7 +116,7 @@ const scoringAlgorithms = [
 
  {name: "Scrabble",
  description : "Traditional scoring algorithm",
- scorerFunction : oldScrabbleScorer,
+ scorerFunction : scrabbleScorer,
  }
 
 
@@ -120,6 +136,9 @@ function scorerPrompt() {
 
       } else if (scorerInput === "1"){
         console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[1].scorerFunction(initialAnswer)}`)
+
+      } else if (scorerInput === "2"){
+         console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[2].scorerFunction(initialAnswer)}`)
       }
       }
       
@@ -146,7 +165,7 @@ function transform(oldPointStructure) {
 //}
 
 function runProgram() {
-   initialPrompt(), scorerPrompt(), transform(oldPointStructure);
+   initialPrompt(), scorerPrompt(), newPointStructure;
    
 };
 

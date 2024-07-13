@@ -34,15 +34,9 @@ function oldScrabbleScorer(word) {
 
 function initialPrompt() {
    console.log("Let's play some scrabble!\n");
-   //let initialAnswer = input.question("Enter a word: ");
-     //return initialAnswer;
- //  console.log(oldScrabbleScorer (initialAnswer));
-};
+  }
 
-//let initialAnswer = initialPrompt;
-//console.log(initialPrompt())
-//let firstAnswer = initialPrompt();
-//console.log(firstAnswer)
+
 
 let newPointStructure = transform(oldPointStructure);
 
@@ -50,36 +44,30 @@ let simpleScorer = function (word) {
    let wordScore = 0;
       for (let i = 0; i < word.length; i++){
          wordScore += 1;
-     //return wordScore;
-   }
+      }
    return wordScore;
-   
-};
+   };
 
 
 
 let vowelBonusScorer = function (vowels) {
    vowels = vowels.toUpperCase();
    let arrayVowels = [];
+
     arrayVowels = vowels.split("")
-    console.log(arrayVowels)
-
-   //let knownVowels = ["A", "E", "I", "O", "U"];
-   let bonusScore = 0;
-   //let numOfVowels = []
-   //console.log(numOfVowels)
-
-  for (let i = 0; i < arrayVowels.length; i++) {
+    let bonusScore = 0;
+   
+   for (let i = 0; i < arrayVowels.length; i++) {
     if (arrayVowels[i] === "A" || arrayVowels[i] === "E" || arrayVowels[i] === "I" || arrayVowels[i] ==="O" ||arrayVowels [i] === "U") {
       bonusScore += 3
     }
-    else if (arrayVowels[i] !== "A" || arrayVowels[i] !== "E" || arrayVowels[i] !== "I" || arrayVowels[i] !=="O" ||arrayVowels [i] !=="U"){
+       else if (arrayVowels[i] !== "A" || arrayVowels[i] !== "E" || arrayVowels[i] !== "I" || arrayVowels[i] !=="O" ||arrayVowels [i] !=="U"){
       bonusScore += 1
     }
     
   }
    return bonusScore
-}
+};
    
 
 
@@ -92,13 +80,9 @@ let scrabbleScorer = function (word) {
       for (item in newPointStructure){
          if (word[i] === item)
          newScore += newPointStructure[item]
-
-      
-      }
-      
-   }
-
-return newScore;
+         }
+       }
+   return newScore;
 
 };
 
@@ -131,15 +115,15 @@ function scorerPrompt() {
      }
 
       let scorerInput = input.question(`Please select 0, 1, or 2: `)
-      if (scorerInput === "0") {
-         console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[0].scorerFunction(initialAnswer)}`)
+         if (scorerInput === "0") {
+            console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[0].scorerFunction(initialAnswer)}`)
 
-      } else if (scorerInput === "1"){
-        console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[1].scorerFunction(initialAnswer)}`)
+         } else if (scorerInput === "1"){
+            console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[1].scorerFunction(initialAnswer)}`)
 
-      } else if (scorerInput === "2"){
-         console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[2].scorerFunction(initialAnswer)}`)
-      }
+             } else if (scorerInput === "2"){
+               console.log(`Your score for ${initialAnswer} is: ${scoringAlgorithms[2].scorerFunction(initialAnswer)}`)
+         }
       }
       
    
@@ -151,18 +135,15 @@ function transform(oldPointStructure) {
 
    for (item in oldPointStructure) {
       let keyValue = oldPointStructure[item]
-      //console.log(keyValue)
+      
 
      for (let i = 0; i < keyValue.length; i++) {
       newObj[keyValue[i].toLowerCase()] = Number(item)
-     // console.log(newObj)
      }
-
-   
-      }
+    }
       return newObj;
    }
-//}
+
 
 function runProgram() {
    initialPrompt(), scorerPrompt(), newPointStructure;
